@@ -1,0 +1,26 @@
+cases:
+  - note: grpc_call/positive
+    query: data.test.p = x
+    modules:
+      - |
+        package test
+
+        p := repeated {
+          repeated := grpc_call(input.str, input.count)
+        }        
+    input: {"str": "Foo", "count": 3}
+    want_result:
+      - x: FooFooFoo
+  - note: grpc_call/negative
+    query: data.test.p = x
+    modules:
+      - |
+        package test
+
+        p := repeated {
+          repeated := grpc_call(input.str, input.count)
+        }        
+    input: { "str": "Foo", "count": -3 }
+    strict_error: true
+    want_error_code: eval_builtin_error
+    want_error: 'repeat: count must be a positive integer'
