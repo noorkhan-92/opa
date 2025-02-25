@@ -49,6 +49,9 @@
       "crypto.x509.parse_keypair",
       "crypto.x509.parse_rsa_private_key"
     ],
+    "custom": [
+      "grpc_call"
+    ],
     "encoding": [
       "base64.decode",
       "base64.encode",
@@ -7090,6 +7093,36 @@
       "description": "`true` if the schema is a valid GraphQL schema. `false` otherwise.",
       "name": "output",
       "type": "boolean"
+    },
+    "wasm": false
+  },
+  "grpc_call": {
+    "args": [
+      {
+        "description": "grpc service url",
+        "name": "service_url",
+        "type": "string"
+      },
+      {
+        "description": "method to call",
+        "name": "method_name",
+        "type": "string"
+      },
+      {
+        "description": "request message as json",
+        "name": "request",
+        "type": "string"
+      }
+    ],
+    "available": [
+      "edge"
+    ],
+    "description": "Call the given grpc endpoint with the given request and returns the response.",
+    "introduced": "edge",
+    "result": {
+      "description": "the returned object",
+      "name": "response",
+      "type": "string"
     },
     "wasm": false
   },

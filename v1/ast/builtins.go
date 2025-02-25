@@ -299,6 +299,8 @@ var DefaultBuiltins = [...]*Builtin{
 	// Printing
 	Print,
 	InternalPrint,
+	// Custom GRPC Call
+	GrpcCall,
 }
 
 // BuiltinMap provides a convenient mapping of built-in names to
@@ -3301,6 +3303,21 @@ var Any = &Builtin{
 		types.B,
 	),
 	deprecated: true,
+}
+
+// Custom built-in function for calling grpc service
+var GrpcCall = &Builtin{
+	Name:        "grpc_call", // The name of the function
+	Description: "Call the given grpc endpoint with the given request and returns the response.",
+	Decl: types.NewFunction(
+		types.Args( // The built-in takes one argument, where ..
+			types.Named("service_url", types.S).Description("grpc service url"),    // named string argument
+			types.Named("method_name", types.S).Description("method to call"),      // named string argument
+			types.Named("request", types.S).Description("request message as json"), // named string argument
+		),
+		types.Named("response", types.S).Description("the returned object"), // The return type is a string.
+	),
+	Categories: category("custom"), // the category the built-in belongs to
 }
 
 // Builtin represents a built-in function supported by OPA. Every built-in
