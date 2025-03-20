@@ -3311,11 +3311,12 @@ var GrpcCall = &Builtin{
 	Description: "Call the given grpc endpoint with the given request and returns the response.",
 	Decl: types.NewFunction(
 		types.Args( // The built-in takes one argument, where ..
-			types.Named("service_url", types.S).Description("grpc service url"),    // named string argument
-			types.Named("method_name", types.S).Description("method to call"),      // named string argument
-			types.Named("request", types.S).Description("request message as json"), // named string argument
+			types.Named("server_url", types.S).Description("grpc server url"),      // string argument
+			types.Named("service_name", types.S).Description("grpc service name"),  // string argument
+			types.Named("method_name", types.S).Description("method to call"),      // string argument
+			types.Named("request", types.A).Description("request message as json"), // json object argument
 		),
-		types.Named("response", types.S).Description("the returned object"), // The return type is a string.
+		types.Named("response", types.A).Description("the returned object"), // The return type is a json object.
 	),
 	Categories: category("custom"), // the category the built-in belongs to
 }

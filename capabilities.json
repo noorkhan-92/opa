@@ -1441,10 +1441,13 @@
           },
           {
             "type": "string"
+          },
+          {
+            "type": "any"
           }
         ],
         "result": {
-          "type": "string"
+          "type": "any"
         },
         "type": "function"
       }

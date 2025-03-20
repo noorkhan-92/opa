@@ -7099,8 +7099,13 @@
   "grpc_call": {
     "args": [
       {
-        "description": "grpc service url",
-        "name": "service_url",
+        "description": "grpc server url",
+        "name": "server_url",
+        "type": "string"
+      },
+      {
+        "description": "grpc service name",
+        "name": "service_name",
         "type": "string"
       },
       {
@@ -7111,7 +7116,7 @@
       {
         "description": "request message as json",
         "name": "request",
-        "type": "string"
+        "type": "any"
       }
     ],
     "available": [
@@ -7122,7 +7127,7 @@
     "result": {
       "description": "the returned object",
       "name": "response",
-      "type": "string"
+      "type": "any"
     },
     "wasm": false
   },
